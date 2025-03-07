@@ -14,6 +14,6 @@ public class YankiAccount {
     private String phoneNumber;
     private String imei;
     private String email;
-    private String debitCard;  // Tarjeta de débito asociada (Opcional)
+    private String debitCard;
     private Double balance;
 }

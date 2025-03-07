@@ -6,9 +6,10 @@ import com.bank.msyanki.service.impl.YankiServiceImpl;
 import io.reactivex.rxjava3.core.Single;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/v1.0/yanki")
+@RequestMapping("/api/v1/yanki")
 public class YankiController {
 
     private final YankiService yankiService;
@@ -28,4 +29,14 @@ public class YankiController {
         return yankiService.getAccountByPhone(phone)
                 .map(ResponseEntity::ok);
     }
+
+
+    @PostMapping("/transfer")
+    public Mono<ResponseEntity<String>> transferMoney(@RequestParam String senderPhone,
+                                                      @RequestParam String receiverPhone,
+                                                      @RequestParam Double amount) {
+        return yankiService.sendPayment(senderPhone, receiverPhone, amount)
+                .then(Mono.just(ResponseEntity.ok("Pago realizado con éxito")));
+    }
+
 }
