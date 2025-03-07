@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ms-yanki
+  cloud:
+    config:
+      uri: http://localhost:8888
+      username: root
+      password: s3cr3t
+      fail-fast: true
+      retry:
+        max-attempts: 5
+        initial-interval: 1000
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
